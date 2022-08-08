@@ -627,14 +627,14 @@ Game.Launch=function()
 	{
 		l('javascriptError').innerHTML=
 		'<div class="title">Oops. Wrong address!</div>'+
-		'<div>It looks like you\'re accessing Cookie Clicker from another URL than the official one.</div>'
+		'<div>It looks like you\'re accessing BetterCC from another URL than the official one.</div>'
 	}
 	Game.timedout=false;
 	Game.Timeout=function()
 	{
 		Game.WriteSave();
 		Game.killShimmers();
-		l('javascriptError').innerHTML='Cookie Clicker is in sleep mode'+(Game.Has('Twin Gates of Transcendence')?' and generating offline cookies':'')+'.<br><a '+Game.clickStr+'="Game.Resume();">Click here</a> to resume from your save file.<br><div style="font-style:italic;font-size:65%;line-height:110%;opacity:0.75;">(this happens when too many frames are skipped at once,<br>usually when the game has been running in the background for a while)<br>(you can turn this feature off in the settings menu)</div>';
+		l('javascriptError').innerHTML='BetterCC is in sleep mode'+(Game.Has('Twin Gates of Transcendence')?' and generating offline cookies':'')+'.<br><a '+Game.clickStr+'="Game.Resume();">Click here</a> to resume from your save file.<br><div style="font-style:italic;font-size:65%;line-height:110%;opacity:0.75;">(this happens when too many frames are skipped at once,<br>usually when the game has been running in the background for a while)<br>(you can turn this feature off in the settings menu)</div>';
 		l('javascriptError').style.display='block';
 		Game.timedout=true;
 		console.log('[=== Game timed out and has been put in sleep mode. Data was saved. ===]');
@@ -664,7 +664,7 @@ Game.Launch=function()
 		Game.T=0;
 		Game.drawT=0;
 		Game.loopT=0;
-		Game.fps=30;
+		Game.fps=60;
 		
 		Game.season=Game.baseSeason;
 		
@@ -689,7 +689,24 @@ Game.Launch=function()
 		//l('links').innerHTML='<a href="http://orteil.dashnet.org/experiments/cookie/" target="blank">Cookie Clicker Classic</a>';
 		
 		Game.lastActivity=Date.now();//reset on mouse move, key press or click
-		
+
+		/*
+		Game Functions
+		 */
+
+		Game.makeSeed=function()
+		{
+			var chars='abcdefghijklmnopqrstuvwxyz'.split('');
+			var str='';
+			for (var i=0;i<5;i++){str+=choose(chars);}
+			return str;
+		}
+
+
+		/*=====================================================================================
+		Variables
+		 */
+
 		//latency compensator stuff
 		Game.time=Date.now();
 		Game.accumulatedDelay=0;
@@ -699,19 +716,8 @@ Game.Launch=function()
 		Game.frameNumber=0;
 		Game.currentFps=Game.fps;
 		Game.previousFps=Game.currentFps;
-		Game.getFps=function()
-		{
-			Game.frameNumber++;
-			var currentTime=(Date.now()-Game.fpsStartTime )/1000;
-			var result=Math.floor((Game.frameNumber/currentTime));
-			if (currentTime>1)
-			{
-				Game.fpsStartTime=Date.now();
-				Game.frameNumber=0;
-			}
-			return result;
-		}
-		
+
+		//Game stuff
 		Game.cookiesEarned=0;//all cookies earned during gameplay
 		Game.cookies=0;//cookies
 		Game.cookiesd=0;//cookies display
@@ -740,21 +746,13 @@ Game.Launch=function()
 		Game.lumpsTotal=-1;//sugar lumps earned across all playthroughs (-1 means they haven't even started yet)
 		Game.lumpT=Date.now();//time when the current lump started forming
 		Game.lumpRefill=0;//time when we last used a sugar lump (on minigame refills etc)
-		
-		Game.makeSeed=function()
-		{
-			var chars='abcdefghijklmnopqrstuvwxyz'.split('');
-			var str='';
-			for (var i=0;i<5;i++){str+=choose(chars);}
-			return str;
-		}
 		Game.seed=Game.makeSeed();//each run has its own seed, used for deterministic random stuff
-		
 		Game.volume=50;//sound volume
-		
+
 		Game.elderWrath=0;
 		Game.elderWrathOld=0;
 		Game.elderWrathD=0;
+
 		Game.pledges=0;
 		Game.pledgeT=0;
 		Game.researchT=0;
@@ -766,6 +764,7 @@ Game.Launch=function()
 		Game.reindeerClicked=0;
 		Game.seasonT=0;
 		Game.seasonUses=0;
+
 		Game.dragonLevel=0;
 		Game.dragonAura=0;
 		Game.dragonAura2=0;
@@ -782,6 +781,19 @@ Game.Launch=function()
 		
 		Game.windowW=window.innerWidth;
 		Game.windowH=window.innerHeight;
+
+		Game.getFps=function()
+		{
+			Game.frameNumber++;
+			var currentTime=(Date.now()-Game.fpsStartTime )/1000;
+			var result=Math.floor((Game.frameNumber/currentTime));
+			if (currentTime>1)
+			{
+				Game.fpsStartTime=Date.now();
+				Game.frameNumber=0;
+			}
+			return result;
+		}
 		
 		window.addEventListener('resize',function(event)
 		{
@@ -901,6 +913,7 @@ Game.Launch=function()
 		/*=====================================================================================
 		BAKERY NAME
 		=======================================================================================*/
+
 		Game.RandomBakeryName=function()
 		{
 			return (Math.random()>0.05?(choose(['Magic','Fantastic','Fancy','Sassy','Snazzy','Pretty','Cute','Pirate','Ninja','Zombie','Robot','Radical','Urban','Cool','Hella','Sweet','Awful','Double','Triple','Turbo','Techno','Disco','Electro','Dancing','Wonder','Mutant','Space','Science','Medieval','Future','Captain','Bearded','Lovely','Tiny','Big','Fire','Water','Frozen','Metal','Plastic','Solid','Liquid','Moldy','Shiny','Happy','Happy Little','Slimy','Tasty','Delicious','Hungry','Greedy','Lethal','Professor','Doctor','Power','Chocolate','Crumbly','Choklit','Righteous','Glorious','Mnemonic','Psychic','Frenetic','Hectic','Crazy','Royal','El','Von'])+' '):'Mc')+choose(['Cookie','Biscuit','Muffin','Scone','Cupcake','Pancake','Chip','Sprocket','Gizmo','Puppet','Mitten','Sock','Teapot','Mystery','Baker','Cook','Grandma','Click','Clicker','Spaceship','Factory','Portal','Machine','Experiment','Monster','Panic','Burglar','Bandit','Booty','Potato','Pizza','Burger','Sausage','Meatball','Spaghetti','Macaroni','Kitten','Puppy','Giraffe','Zebra','Parrot','Dolphin','Duckling','Sloth','Turtle','Goblin','Pixie','Gnome','Computer','Pirate','Ninja','Zombie','Robot']);
@@ -915,16 +928,20 @@ Game.Launch=function()
 			Game.bakeryName=Game.bakeryName.substring(0,28);
 			Game.bakeryNameRefresh();
 		}
+
 		Game.bakeryNameRefresh=function()
 		{
 			var name=Game.bakeryName;
 			if (name.slice(-1).toLowerCase()=='s') name+='\' bakery'; else name+='\'s bakery';
 			Game.bakeryNameL.innerHTML=name;
 			name=Game.bakeryName.toLowerCase();
+
 			if (name=='orteil') Game.Win('God complex');
 			if (name.indexOf('saysopensesame',name.length-('saysopensesame').length)>0 && !Game.sesame) Game.OpenSesame();
+
 			Game.recalculateGains=1;
 		}
+
 		Game.bakeryNamePrompt=function()
 		{
 			Game.Prompt('<h3>Name your bakery</h3><div class="block" style="text-align:center;">What should your bakery\'s name be?</div><div class="block"><input type="text" style="text-align:center;width:100%;" id="bakeryNameInput" value="'+Game.bakeryName+'"/></div>',[['Confirm','if (l(\'bakeryNameInput\').value.length>0) {Game.bakeryNameSet(l(\'bakeryNameInput\').value);Game.Win(\'What\\\'s in a name\');Game.ClosePrompt();}'],['Random','Game.bakeryNamePromptRandom();'],'Cancel']);
@@ -12352,6 +12369,10 @@ Game.Launch=function()
 			Game.dragonLevel=Game.dragonLevels.length-1;
 			Game.santaLevel=Game.santaLevels.length-1;
 		}
+
+		//=====================================================================================//
+		//=================================Sesame functions====================================//
+		//=====================================================================================//
 		
 		Game.SesameReset=function()
 		{
@@ -12433,6 +12454,8 @@ Game.Launch=function()
 			Game.sesame=1;
 			Game.Achievements['Cheated cookies taste awful'].won=1;
 		}
+
+
 		
 		Game.EditAscend=function()
 		{
