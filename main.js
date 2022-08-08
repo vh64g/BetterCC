@@ -690,7 +690,7 @@ Game.Launch=function()
 		
 		Game.lastActivity=Date.now();//reset on mouse move, key press or click
 
-		/*
+		/*=====================================================================================
 		Game Functions
 		 */
 
@@ -13188,11 +13188,75 @@ window.onload=function()
 		else
 		{
 			console.log('[=== '+choose([
-				'Oh, hello!',
-				'hey, how\'s it hangin',
+				'Oh, hello! I\'m a cookie!',
+				'hey, how\'s it hangin, ou, no don\'t try a cheated cookie, perhaps they are poisoned',
 				'About to cheat in some cookies or just checking for bugs?',
 				'Remember : cheated cookies taste awful!',
 				'Hey, Orteil here. Cheated cookies taste awful... or do they?',
+				'Do you remember when you tryed to eat cheated cookies last time?',
+				'Nevermind, I\'m not a cookie. I\'m a game.',
+				'I\'m a game, not a cookie.',
+				'We\'re no strangers to love\n' +
+				'You know the rules and so do I (do I)\n' +
+				'A full commitment\'s what I\'m thinking of\n' +
+				'You wouldn\'t get this from any other guy\n' +
+				'I just wanna tell you how I\'m feeling\n' +
+				'Gotta make you understand\n' +
+				'Never gonna give you up\n' +
+				'Never gonna let you down\n' +
+				'Never gonna run around and desert you\n' +
+				'Never gonna make you cry\n' +
+				'Never gonna say goodbye\n' +
+				'Never gonna tell a lie and hurt you\n' +
+				'We\'ve known each other for so long\n' +
+				'Your heart\'s been aching, but you\'re too shy to say it (say it)\n' +
+				'Inside, we both know what\'s been going on (going on)\n' +
+				'We know the game and we\'re gonna play it\n' +
+				'And if you ask me how I\'m feeling\n' +
+				'Don\'t tell me you\'re too blind to see\n' +
+				'Never gonna give you up\n' +
+				'Never gonna let you down\n' +
+				'Never gonna run around and desert you\n' +
+				'Never gonna make you cry\n' +
+				'Never gonna say goodbye\n' +
+				'Never gonna tell a lie and hurt you\n' +
+				'Never gonna give you up\n' +
+				'Never gonna let you down\n' +
+				'Never gonna run around and desert you\n' +
+				'Never gonna make you cry\n' +
+				'Never gonna say goodbye\n' +
+				'Never gonna tell a lie and hurt you\n' +
+				'We\'ve known each other for so long\n' +
+				'Your heart\'s been aching, but you\'re too shy to say it (to say it)\n' +
+				'Inside, we both know what\'s been going on (going on)\n' +
+				'We know the game and we\'re gonna play it\n' +
+				'I just wanna tell you how I\'m feeling\n' +
+				'Gotta make you understand\n' +
+				'Never gonna give you up\n' +
+				'Never gonna let you down\n' +
+				'Never gonna run around and desert you\n' +
+				'Never gonna make you cry\n' +
+				'Never gonna say goodbye\n' +
+				'Never gonna tell a lie and hurt you\n' +
+				'Never gonna give you up\n' +
+				'Never gonna let you down\n' +
+				'Never gonna run around and desert you\n' +
+				'Never gonna make you cry\n' +
+				'Never gonna say goodbye\n' +
+				'Never gonna tell a lie and hurt you\n' +
+				'Never gonna give you up\n' +
+				'Never gonna let you down\n' +
+				'Never gonna run around and desert you\n' +
+				'Never gonna make you cry\n' +
+				'Never gonna say goodbye\n' +
+				'Never gonna tell a lie and hurt you',
+				'I had loads to do today. Ah well, so now I have loads to do tomorrow.',
+				'After millions of years of evolution, you’re kind of a disappointment, cheating cookies is not the solution to everything',
+				'Why wasting your time cheating cookies, when you\'re already cheating cookies?',
+				'Why wasting your time cheating cookies, when you could waste your time playing this game?',
+				'Stop wasting your time cheating cookies, and start playing this game!',
+				'Stop cheating cookies, and start playing this game!',
+				'Go out and find real friends, cookies are not real friends.',
 			])+' ===]');
 			Game.Load();
 			//try {Game.Load();}
